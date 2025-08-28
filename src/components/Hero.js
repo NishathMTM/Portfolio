@@ -70,6 +70,7 @@ export default function Hero() {
                     <div>
                         <img
                             src={HeroImg}
+                            alt='Nisath'
                             className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover mx-auto border-4 border-white shadow-lg"
                         />
                     </div>
