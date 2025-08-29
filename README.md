@@ -1,3 +1,42 @@
+# How to apply the changed files (Windows)
+
+Follow these steps to run the updated project locally and verify the latest changes (e.g., the centered "Download CV" button in the Hero section), or to build for production.
+
+## Prerequisites
+- Node.js (LTS recommended) and npm installed
+- PowerShell or Command Prompt
+
+## Run locally (development)
+1. Open PowerShell.
+2. Go to the project folder:
+   cd F:\portfolio
+3. Install dependencies (first time or after pulling changes):
+   npm install
+4. Start the dev server:
+   npm start
+5. Open your browser at http://localhost:3000 if it doesn’t auto-open.
+
+Changes to source files are hot-reloaded by default. If the dev server was already running, simply save the file and the browser will refresh automatically.
+
+### Verify the update
+- Navigate to the Home/Hero section.
+- You should see the "Download CV" button centered below the main content and image, responsive on mobile.
+- Clicking it should download the CV PDF.
+
+## Build for production
+1. From the project root:
+   npm run build
+2. The production build will be created in the build directory. Deploy the contents of build to your hosting of choice.
+
+## Troubleshooting
+- If you see dependency errors:
+  - Delete node_modules and package-lock.json, then run npm install again.
+- If the page doesn’t reflect changes:
+  - Do a hard refresh in the browser (Ctrl+F5), or clear cache.
+  - Ensure the dev server is running without errors in the terminal.
+
+---
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

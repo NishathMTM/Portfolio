@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { BsGithub } from "react-icons/bs";
 import { AiOutlineLinkedin } from "react-icons/ai";
+import {FaSquareWhatsapp} from "react-icons/fa6";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -15,7 +16,8 @@ export default function Contact() {
         phone: '+94 758757781',
         social: {
             github: 'https://github.com',
-            linkedin: 'https://linkedin.com'
+            linkedin: 'https://linkedin.com',
+            whatsapp: 'https://wa.me/+940758757781'
         }
     };
 
@@ -88,9 +90,17 @@ export default function Contact() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 whileHover={{ scale: 1.1 }}
-                                className="bg-blue-600 p-3 rounded-full"
+                                className="bg-gray-700 p-3 rounded-full"
                             >
                                 <AiOutlineLinkedin size={24} />
+                            </motion.a>
+                            <motion.a
+                                href={config.social.whatsapp}
+                                whileHover={{ y: -5, scale: 1.1 }}
+                                className="bg-gray-700 p-3 rounded-full"
+                            >
+                                <FaSquareWhatsapp size={30} />
+
                             </motion.a>
                         </div>
                     </motion.div>

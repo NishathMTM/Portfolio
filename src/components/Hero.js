@@ -2,6 +2,8 @@ import HeroImg from '../assets/my12.png';
 import MyCV from '../assets/Mohamed Nishath-CV.pdf';
 import { BsGithub } from "react-icons/bs";
 import { AiOutlineLinkedin } from "react-icons/ai";
+import { FaSquareWhatsapp } from "react-icons/fa6";
+
 import { motion } from 'framer-motion';
 
 export default function Hero() {
@@ -9,7 +11,8 @@ export default function Hero() {
         subtitle: 'I\'m a Full-Stack Developer',
         social: {
             github: 'https://github.com/NishathMTM',
-            linkedin: 'https://www.linkedin.com/in/mohamed-nishath-a8b799242'
+            linkedin: 'https://www.linkedin.com/in/mohamed-nishath-a8b799242',
+            whatsapp: 'https://wa.me/+940758757781'
         },
         link: MyCV
     };
@@ -62,6 +65,15 @@ export default function Hero() {
                         >
                             <AiOutlineLinkedin size={30} />
                         </motion.a>
+                        <motion.a
+                            href={config.social.whatsapp}
+                            whileHover={{ y: -5, scale: 1.1 }}
+                            className="hover:text-blue-400 transition-colors"
+                        >
+                            <FaSquareWhatsapp size={30} />
+
+                        </motion.a>
+
                     </motion.div>
                 </motion.div>
                 <motion.div
