@@ -1,10 +1,7 @@
 import { motion } from 'framer-motion';
 import MyCV from '../assets/Mohamed Nishath-CV.pdf'
 
-export default function Resume() {
-    const config = {
-        link: MyCV
-    };
+export default function Education() {
 
     const experiences = [
         {
@@ -31,7 +28,6 @@ export default function Resume() {
                     transition={{ duration: 0.5 }}
                     className="text-3xl md:text-4xl font-bold text-center mb-16"
                 >
-                    My CV
                 </motion.h2>
 
                 <motion.div
@@ -40,20 +36,20 @@ export default function Resume() {
                     transition={{ duration: 0.7 }}
                     className="max-w-4xl mx-auto"
                 >
-                    <div className="flex justify-center mb-8">
-                        <motion.a
-                            href={config.link}
-                            download
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full flex items-center"
-                        >
-                            Download CV
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
-                            </svg>
-                        </motion.a>
-                    </div>
+                    {/*<div className="flex justify-center mb-8">*/}
+                    {/*    <motion.a*/}
+                    {/*        href={config.link}*/}
+                    {/*        download*/}
+                    {/*        whileHover={{ scale: 1.05 }}*/}
+                    {/*        whileTap={{ scale: 0.95 }}*/}
+                    {/*        className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full flex items-center"*/}
+                    {/*    >*/}
+                    {/*        Download CV*/}
+                    {/*        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">*/}
+                    {/*            <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />*/}
+                    {/*        </svg>*/}
+                    {/*    </motion.a>*/}
+                    {/*</div>*/}
 
                     {/* Experience */}
                     <div className="mb-12">

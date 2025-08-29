@@ -1,16 +1,19 @@
 import HeroImg from '../assets/my12.png';
+import MyCV from '../assets/Mohamed Nishath-CV.pdf';
 import { BsGithub } from "react-icons/bs";
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { motion } from 'framer-motion';
 
 export default function Hero() {
-    const config = {
+    let config = {
         subtitle: 'I\'m a Full-Stack Developer',
         social: {
             github: 'https://github.com/NishathMTM',
             linkedin: 'https://www.linkedin.com/in/mohamed-nishath-a8b799242'
-        }
+        },
+        link: MyCV
     };
+
 
     return (
         <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-purple-900 pt-20">
@@ -74,7 +77,24 @@ export default function Hero() {
                             className="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover mx-auto border-4 border-white shadow-lg"
                         />
                     </div>
+                    <div className='container mx-auto'>
+                        <div className="flex justify-center mb-8 py-8">
+                            <motion.a
+                                href={config.link}
+                                download
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full flex items-center"
+                            >
+                                Download CV
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2 " viewBox="0 0 20 20" fill="currentColor">
+                                    <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                                </svg>
+                            </motion.a>
+                        </div>
+                    </div>
                 </motion.div>
+
             </div>
         </section>
     );

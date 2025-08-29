@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
 const config = {
-    line1: 'Hi, My name is Nishath. I am a Full stack web developer. I build modern websites with React.js and Tailwind CSS.',
+    line1: 'Hi, My name is Nishath. I am a Full stack web developer. I build modern websites with React.js, Nuxt.js, adonis.js and Tailwind CSS.',
     line2: 'I\'m an Information Technology undergraduate passionate about full-stack development. I\'ve built projects like Tutor Connect (Nuxt.js, Adonis.js), led a Hospital Management System (Java), developed Battitour.lk (WordPress), and created my personal portfolio with React.js and Tailwind CSS. I enjoy solving problems and turning ideas into impactful digital solutions.',
 };
 
