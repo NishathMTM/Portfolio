@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { BsGithub } from "react-icons/bs";
 import { AiOutlineLinkedin } from "react-icons/ai";
-import {FaSquareWhatsapp} from "react-icons/fa6";
+import { FaSquareWhatsapp } from "react-icons/fa6";
 
 export default function Contact() {
     const [formData, setFormData] = useState({
@@ -10,6 +10,8 @@ export default function Contact() {
         email: '',
         message: ''
     });
+    const [submitting, setSubmitting] = useState(false);
+    const [error, setError] = useState('');
 
     const config = {
         email: 'mnishath21@gmail.com',
@@ -17,7 +19,8 @@ export default function Contact() {
         social: {
             github: 'https://github.com',
             linkedin: 'https://linkedin.com',
-            whatsapp: 'https://wa.me/+940758757781'
+            // wa.me format: https://wa.me/<countrycode+number> (no plus sign)
+            whatsapp: 'https://wa.me/94758757781'
         }
     };
 
@@ -28,13 +31,61 @@ export default function Contact() {
         });
     };
 
+    const isValidEmail = (value) => {
+        // Simple email validation
+        return /[^@\s]+@[^@\s]+\.[^@\s]+/.test(value);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission here
-        console.log(formData);
-        alert('Thank you for your message! I will get back to you soon.');
-        setFormData({ name: '', email: '', message: '' });
+        setError('');
+
+        if (!formData.name.trim()) {
+            setError('Please enter your name.');
+            return;
+        }
+        if (!isValidEmail(formData.email)) {
+            setError('Please enter a valid email address.');
+            return;
+        }
+        if (!formData.message.trim()) {
+            setError('Please enter your message.');
+            return;
+        }
+
+        try {
+            setSubmitting(true);
+
+            // Compose a mailto link that opens the user's email client with all details pre-filled
+            const subject = encodeURIComponent(`New message from ${formData.name}`);
+            const bodyLines = [
+                `You received a new message from your portfolio contact form:`,
+                ``,
+                `Name: ${formData.name}`,
+                `Email: ${formData.email}`,
+                ``,
+                `Message:`,
+                `${formData.message}`
+            ];
+            const body = encodeURIComponent(bodyLines.join('\n'));
+            const mailtoHref = `mailto:${config.email}?subject=${subject}&body=${body}`;
+
+            // Trigger the user's default email client
+            window.location.href = mailtoHref;
+
+            // Reset form after triggering
+            setFormData({ name: '', email: '', message: '' });
+        } catch (err) {
+            console.error(err);
+            setError('Something went wrong while preparing your message. Please try again.');
+        } finally {
+            setSubmitting(false);
+        }
     };
+
+    const whatsappMessage = encodeURIComponent(
+        `Hello! My name is ${formData.name || '(your name)'} and my email is ${formData.email || '(your email)'}.%0A${formData.message || 'I would like to get in touch.'}`
+    );
 
     return (
         <section id="contact" className="py-20 bg-gray-800 text-white">
@@ -95,12 +146,13 @@ export default function Contact() {
                                 <AiOutlineLinkedin size={24} />
                             </motion.a>
                             <motion.a
-                                href={config.social.whatsapp}
+                                href={`${config.social.whatsapp}?text=${whatsappMessage}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 whileHover={{ y: -5, scale: 1.1 }}
                                 className="bg-gray-700 p-3 rounded-full"
                             >
                                 <FaSquareWhatsapp size={30} />
-
                             </motion.a>
                         </div>
                     </motion.div>
@@ -146,18 +198,24 @@ export default function Contact() {
                                     value={formData.message}
                                     onChange={handleChange}
                                     required
-                                    rows="5"
+                                    rows={5}
                                     className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                                     placeholder="Enter your message"
                                 ></textarea>
                             </div>
+
+                            {error && (
+                                <div className="text-red-400 text-sm">{error}</div>
+                            )}
+
                             <motion.button
                                 type="submit"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg"
+                                whileHover={{ scale: submitting ? 1 : 1.05 }}
+                                whileTap={{ scale: submitting ? 1 : 0.95 }}
+                                disabled={submitting}
+                                className={`w-full text-white font-bold py-3 px-4 rounded-lg ${submitting ? 'bg-blue-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
                             >
-                                Send Message
+                                {submitting ? 'Sending…' : 'Send Message'}
                             </motion.button>
                         </form>
                     </motion.div>
